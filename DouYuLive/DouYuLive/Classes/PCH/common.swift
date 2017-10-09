@@ -12,8 +12,10 @@ import UIKit
 let Screen_width : CGFloat = UIScreen.main.bounds.size.width;
 let Screen_height : CGFloat = UIScreen.main.bounds.size.height;
 
-let StatusBarH : CGFloat = 20;
-let NavigationBarH :CGFloat = 44;
+let StatusBarH : CGFloat = 20
+let NavigationBarH :CGFloat = 44
+let TabBarH : CGFloat = 49
+
 
 
 extension UIColor

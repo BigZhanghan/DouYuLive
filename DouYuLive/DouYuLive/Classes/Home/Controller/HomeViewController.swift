@@ -12,12 +12,12 @@ private let titleViewH : CGFloat = 40;
 
 class HomeViewController: UIViewController {
     lazy var pageContentView : PageContentView = {[weak self] in
-        let contentH : CGFloat = Screen_height - StatusBarH - NavigationBarH - titleViewH
+        let contentH : CGFloat = Screen_height - StatusBarH - NavigationBarH - titleViewH - TabBarH
         let contentFrame = CGRect(x: 0, y: StatusBarH + NavigationBarH + titleViewH, width: Screen_width, height: contentH)
         
         var childVcs = [UIViewController]()
-        
-        for _ in 0..<4 {
+        childVcs.append(RecommandViewController())
+        for _ in 0..<3 {
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
             childVcs.append(vc)
