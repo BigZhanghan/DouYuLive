@@ -18,10 +18,19 @@ let TabBarH : CGFloat = 49
 
 
 
-extension UIColor
-{
+extension UIColor {
     //主色值
     class func mainColor() -> UIColor {
         return UIColor.init(colorLiteralRed: 253/255.0, green: 119/255.0, blue: 34/255.0, alpha: 1.0);
     }
 }
+
+extension NSDate {
+    class func getCurrentTime() -> String {
+        let nowDate = NSDate()
+        let interval = Int(nowDate.timeIntervalSince1970)
+        return "\(interval)"
+    }
+}
+
+

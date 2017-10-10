@@ -8,25 +8,13 @@
 
 import UIKit
 
-extension UIColor
-{
+extension UIColor {
     convenience init(r : CGFloat, g : CGFloat, b : CGFloat) {
         self.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
     }
 }
 
-extension UIBarButtonItem
-{
-    /*
-     class func createItem(image:String, highImage:String, size:CGSize) -> UIBarButtonItem {
-     let btn = UIButton();
-     btn .setImage(UIImage.init(named: image), for: UIControlState.normal);
-     btn.setImage(UIImage.init(named: highImage), for: UIControlState.highlighted);
-     btn.frame = CGRect.init(origin: CGPoint.zero, size: size);
-     return UIBarButtonItem.init(customView: btn);
-     }
-     */
-    
+extension UIBarButtonItem {
     /*便利构造函数
      1>convenience开头
      2>构造函数中必须明确d调用一个设计函数（self）
@@ -39,10 +27,11 @@ extension UIBarButtonItem
         }
         if size == CGSize.zero {
             btn.sizeToFit();
-        }
-        else {
+        } else {
             btn.frame = CGRect.init(origin: CGPoint.zero, size: size);
         }
         self.init(customView: btn);
     }
 }
+
+

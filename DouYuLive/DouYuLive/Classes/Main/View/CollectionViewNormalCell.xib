@@ -70,7 +70,13 @@
                 <constraint firstItem="Bjx-v2-JaP" firstAttribute="centerY" secondItem="T3s-OG-VQD" secondAttribute="centerY" id="vRf-bC-1aP"/>
             </constraints>
             <size key="customSize" width="217" height="155"/>
-            <point key="canvasLocation" x="115.5" y="124.5"/>
+            <connections>
+                <outlet property="nicknameLabel" destination="5yi-k9-WAV" id="Gdj-h2-cXo"/>
+                <outlet property="onlineBtn" destination="Mg1-pN-dHO" id="Y7f-yd-sYh"/>
+                <outlet property="roomNameLabel" destination="T3s-OG-VQD" id="p2m-1K-L3x"/>
+                <outlet property="sourceImageView" destination="rUi-oP-Rnb" id="Ki7-fz-Jqe"/>
+            </connections>
+            <point key="canvasLocation" x="-78" y="3"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -60,36 +60,42 @@ extension RecommandViewController {
 
 extension RecommandViewController {
     func requestData() {
-        recommandVM.requestData()
+        recommandVM.requestData { 
+            self.collectionView.reloadData()
+        }
     }
 }
 
 extension RecommandViewController : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 12
+        return recommandVM.anchorGroups.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 8
-        } else {
-            return 4
-        }
+        let group = recommandVM.anchorGroups[section]
+        return group.anchors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var cell : UICollectionViewCell!
+        let group = recommandVM.anchorGroups[indexPath.section]
+        let anchor = group.anchors[indexPath.item]
+        
         if indexPath.section == 1 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: PrettyCellId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PrettyCellId, for: indexPath) as! CollectionPrettyCell
+            
+            cell.anchor = anchor
+            return cell
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCellId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCellId, for: indexPath) as! CollectionViewNormalCell
+            cell.anchor = anchor
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeadViewId, for: indexPath)
+        let headView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeadViewId, for: indexPath) as! CollectionHeadView
+        headView.group = recommandVM.anchorGroups[indexPath.section]
         
         return headView
     }
