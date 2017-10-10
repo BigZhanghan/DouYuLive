@@ -17,6 +17,7 @@ private let PrettyCellId = "PrettyCellId"
 private let headViewH : CGFloat = 50
 private let HeadViewId = "HeadViewId"
 private let CycleViewH = Screen_width * 3 / 8
+private let GameViewH : CGFloat = 90
 
 class RecommandViewController: UIViewController {
 
@@ -45,8 +46,14 @@ class RecommandViewController: UIViewController {
     
     lazy var cycleView : RecommandCycleView = {
         let cycleView = RecommandCycleView.recommandCycleView()
-        cycleView.frame = CGRect(x: 0, y: -CycleViewH, width: Screen_width, height: CycleViewH)
+        cycleView.frame = CGRect(x: 0, y: -(CycleViewH + GameViewH), width: Screen_width, height: CycleViewH)
         return cycleView
+    }()
+    
+    lazy var gameView : RecommandGameView = {
+       let gameView = RecommandGameView.recommandGameView()
+        gameView.frame = CGRect(x: 0, y: -GameViewH, width: Screen_width, height: GameViewH)
+        return gameView
     }()
     
     override func viewDidLoad() {
@@ -63,8 +70,10 @@ extension RecommandViewController {
         view.addSubview(collectionView)
         
         collectionView.addSubview(cycleView)
+        
+        collectionView.addSubview(gameView)
         //设置collection的内边距
-        collectionView.contentInset = UIEdgeInsetsMake(CycleViewH, 0, 0, 0)
+        collectionView.contentInset = UIEdgeInsetsMake(CycleViewH + GameViewH, 0, 0, 0)
     }
 }
 
@@ -72,6 +81,8 @@ extension RecommandViewController {
     func requestData() {
         recommandVM.requestData { 
             self.collectionView.reloadData()
+            
+            self.gameView.groups = self.recommandVM.anchorGroups
         }
         
         recommandVM.requsetCycleData {

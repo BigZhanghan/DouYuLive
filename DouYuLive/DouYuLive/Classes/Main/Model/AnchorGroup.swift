@@ -22,6 +22,7 @@ class AnchorGroup: NSObject {
     
     var tag_name : String = ""
     var icon_name : String = "home_header_normal"
+    var icon_url : String = ""
     lazy var anchors : [AnchorModel] = [AnchorModel]()
     
     override init() {
