@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BaseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sourceImageView: UIImageView!
@@ -31,7 +32,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
             guard let iconURL = URL(string : anchor.vertical_src) else {
                 return
             }
-            sourceImageView.kf.setImage(with: iconURL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+            sourceImageView.kf.setImage(with: iconURL)
         }
     }
 }

@@ -108,6 +108,12 @@ extension PageTitleView {
         guard let currentLabel = tap.view as? UILabel else {
             return
         }
+        
+        //修复重复点击选中失效
+        if currentLabel.tag == currentIndex {
+            return
+        }
+        
         let oldLabel = titleLabels[currentIndex]
         currentLabel.textColor = UIColor.mainColor()
         oldLabel.textColor = UIColor(r: NormalColor.0, g: NormalColor.1, b: NormalColor.2)

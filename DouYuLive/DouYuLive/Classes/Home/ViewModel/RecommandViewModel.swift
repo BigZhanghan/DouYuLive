@@ -12,6 +12,8 @@ class RecommandViewModel {
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
     lazy var hotData : AnchorGroup = AnchorGroup()
     lazy var prettyData : AnchorGroup = AnchorGroup()
+    
+    lazy var cycleModels : [CycleModel] = [CycleModel]()
 }
 
 extension RecommandViewModel {
@@ -99,6 +101,25 @@ extension RecommandViewModel {
         disGroup.notify(queue: DispatchQueue.main) {
             self.anchorGroups.insert(self.prettyData, at: 0)
             self.anchorGroups.insert(self.hotData, at: 0)
+            
+            finishedCallBack()
+        }
+    }
+    
+    func requsetCycleData(finishedCallBack : @escaping () -> ()) {
+        NetworkTools.requestData(type: MethodType.get, URLString: "http://www.douyutv.com/api/v1/slide/6", parameters: ["version" : "2.300"]) { (result) in
+            
+            guard let resultDict = result as? [String : NSObject] else {
+                return
+            }
+            
+            guard let dataArray = resultDict["data"] as? [[String : NSObject]] else {
+                return
+            }
+            
+            for dict in dataArray {
+                self.cycleModels.append(CycleModel(dict: dict))
+            }
             
             finishedCallBack()
         }
