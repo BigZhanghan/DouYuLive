@@ -4,8 +4,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'DouYuLive' do
-
-pod 'Alamofire'
-pod 'Kingfisher'
-
+    pod 'Alamofire'
+    pod 'Kingfisher'
 end
